@@ -30,14 +30,131 @@ $H_0$ The drug does effect men differently.
 $H_A$ The drug does not effect men differently. 
 
 
+```{r}
+barchartGC(~treatment + sex,data=FinalDat)
+barchartGC(~treatment + sex,data=FinalDat, type="percent")
+
+```
+```{r}
+table1 <- xtabs(~treatment + sex, data=FinalDat)
+rowPerc(table1)
+colPerc(table1)
+```
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+```{r}
+xtabs(~sex + treatment, data =FinalData)
+```
+
+The inferential results show that the effectiveness of the treatment is nearly identical to the females but not exact with the men being higher at 9283. we would reject the null hypothesis and the drug does affect men slightly differently as well as the p-value being 0.6536 there for these males should still take the treatment.
+
+
 ## Females
 
+$H_O$ The drug effects females differently. 
+$H_A$ The drug does not effect females differently. 
+
+```{r}
+xtabs(~sex + treatment, data =FinalData)
+```
+
+```{r}
+# Gender data
+gender <- c("Guys", "Gals")
+effectiveness <- c(87, 92)
+
+# Create barplot
+barplot(effectiveness, names.arg = gender, col = "blue",
+        xlab = "Gender", ylab = "Effectiveness (%)",
+        main = "Vaccine Effectiveness by Gender")
+
+```
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+
+the results of the chi test show that it is equal to 0.1993 and the p value is 0.8355 and there is not much of a difference between the effect on men vs women and the effects on the drug itself so as we can see from this test and the last test there is not much of a difference but still a difference so we would reject the null hypothesis
 
 ## LGBTQ
 
+$H_0$ Vaccine effectiveness is independent of sexual orientation 
+$H_A$ Vaccine effectiveness is dependent of sexual orientation
 
+ 
+```{r}
+xtabs(~LGBTQ + treatment, data = FinalData)
+```
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+```{r}
+table1 <- xtabs(~LGBTQ + treatment, data=FinalData)
+rowPerc(table1)
+colPerc(table1)
+```
+```{r}
+# Sexual orientation data
+orientation <- c("Heterosexual", "Non-heterosexual")
+effectiveness <- c(88, 89)
+
+# Create barplot
+barplot(effectiveness, names.arg = orientation, col = "purple",
+        xlab = "Sexual Orientation", ylab = "Effectiveness (%)",
+        main = "Vaccine Effectiveness by Sexual Orientation")
+
+```
+
+
+
+What you can see between these tests are the slight visual difference of the effectiveness between gays and straights since there is almost no difference and the p-value is 0.6 we fail to reject the null hypthesis. 
 
 ## Druggies
 
+$H_0$ Vaccine effectiveness is independent of drug use.  
+$H_A$ Vaccine effectiveness is dependent on drug use.
+
+```{r}
+table1 <- xtabs(~DrugUser + treatment, data=FinalData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+```{r}
+# Drug use data
+drug_use <- c("Users", "Non-users")
+effectiveness <- c(70, 90)
+
+# Create barplot
+barplot(effectiveness, names.arg = drug_use, col = "green",
+        xlab = "Drug Use", ylab = "Effectiveness (%)",
+        main = "Vaccine Effectiveness by Drug Use")
+
+```
+
+```{r}
+xtabs(~ DrugUser + treatment, data = FinalData)
+```
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+we can see from the charts that the effectiveness for none users is higher then the effectiveness for none users and the p-value being 0.8 we fail to reject the null hypothesis. 
 
 # Overall Results and Conclusions
+
+all my conclusions are underneath each subheading i was very confused on this but hopefully i did it correct!!
